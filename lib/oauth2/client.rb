@@ -145,7 +145,7 @@ module OAuth2
       end
       opts[:headers].merge!(headers)
       response = request(options[:token_method], token_url, opts)
-      if options[:raise_errors] && !(response.parsed.is_a?(Hash) && response.parsed['access_token'])
+      if options[:raise_errors] && !(response.parsed.is_a?(Hash) && response.parsed['access_token'] && response.parsed['token'])
         error = Error.new(response)
         raise(error)
       end
